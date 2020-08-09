@@ -21,6 +21,7 @@ public class GameController {
     ArrayList<Player> players = new ArrayList<>();
     MazeGame mazeGame = new MazeGame();
     GameMap gameMap = mazeGame.newMap();
+
     boolean joinPlayer = true ;
 
     @GetMapping("/startGame")
