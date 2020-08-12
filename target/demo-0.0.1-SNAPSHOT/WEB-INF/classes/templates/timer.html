@@ -1,0 +1,47 @@
+<html>
+<head>
+<script>
+
+function resetTimer(){
+    clearInterval(t);
+    document.getElementById("end").style.display = "none";
+    document.getElementById("remove").style.display = "block";
+    alert("Game Over");
+
+}
+
+function startTimer(m,s)
+    {
+        document.getElementById('timer').innerHTML= m+":"+s;
+        document.getElementById("remove").style.display = "none";
+        document.getElementById("end").style.display = "block";
+
+        if (s==0)
+            {
+               if (m == 0)
+                {
+                    return;
+                }
+                else if (m != 0)
+                {
+
+
+                    m = m-1;
+                    s = 60;
+                }
+        }
+    s = s-1;
+    t=setTimeout(function(){startTimer(m,s)},1000);
+}
+
+
+</script>
+</head>
+
+<body>
+<button id="remove" onClick = "startTimer(120,0)">Start</button>
+<button id="end" style="display: none;" onClick = "resetTimer()">End</button>
+
+<p id = "timer">120:0</p>
+</body>
+</html>
