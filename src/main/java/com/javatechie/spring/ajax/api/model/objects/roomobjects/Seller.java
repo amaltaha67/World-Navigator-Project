@@ -14,7 +14,6 @@ public class Seller extends RoomObjects {
     }
 
     public void AddItem(Items I) {
-        I.SetPrice(I.getPrice());
         ItemsForSell.put(I , I.getPrice()) ;
     }
     public void RemoveItem(Items I)

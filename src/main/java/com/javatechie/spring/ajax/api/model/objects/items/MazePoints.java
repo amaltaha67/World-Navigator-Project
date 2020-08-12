@@ -2,7 +2,7 @@ package com.javatechie.spring.ajax.api.model.objects.items;
 
 public class MazePoints implements Items{
     private int value = 0 ;
-    @Override
+
     public void SetPrice(int price) {
         value = price ;
     }
