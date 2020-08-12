@@ -1,4 +1,4 @@
-package com.javatechie.spring.ajax.api.dto;
+package com.javatechie.spring.ajax.api.model.maze;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,29 +13,20 @@ public class Player {
 
     private int playerIDS ; // needs to be deleted
     private String playerNameF ;
-    private String playerNameS;
 
     private HashMap<Items, Integer> ownedItems ;
     private int MazePoints;
     private Director Direction ;
     private int currRoomID ;
 
-    public Player(int playerIDS , String playerNameF , String playerNameS){
+    public Player(int playerIDS , String playerNameF){
         ownedItems = new HashMap<>() ;
         MazePoints = 100 ;
         Direction = new Director();
         this.playerIDS = playerIDS ;
         this.playerNameF = playerNameF ;
-        this.playerNameS = playerNameS ;
     }
 
-    public void setPlayerNameS(String playerNameS) {
-        this.playerNameS = playerNameS;
-    }
-
-    public String getPlayerNameS() {
-        return playerNameS;
-    }
     public void setPlayerID(int playerIDS) {
         this.playerIDS = playerIDS;
     }

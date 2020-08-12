@@ -2,8 +2,9 @@ package com.javatechie.spring.ajax.api.model.maze;
 
 
 
-import com.javatechie.spring.ajax.api.dto.Player;
+import com.javatechie.spring.ajax.api.dto.Commander;
 import com.javatechie.spring.ajax.api.model.commands.AvailableCommand;
+import com.javatechie.spring.ajax.api.model.commands.Invoker;
 import com.javatechie.spring.ajax.api.model.objects.Room;
 import com.javatechie.spring.ajax.api.model.objects.items.Flashlight;
 import com.javatechie.spring.ajax.api.model.objects.items.Items;
@@ -13,11 +14,12 @@ import com.javatechie.spring.ajax.api.model.objects.roomobjects.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
 public class MazeGame {
-
+    ArrayList<Player> players = new ArrayList<>();
+    boolean joinPlayer = true ;
+    HashMap<Integer, Boolean> reservedRoom = new HashMap<>();
+    HashMap<Integer, Boolean>reservedIDs= new HashMap<>();
     public  GameMap newMap(){
 
         ArrayList<Room>MazeRooms = new ArrayList<>() ;
@@ -42,11 +44,11 @@ public class MazeGame {
         mazeGraph.addDoor(MazeRooms.get(6) , MazeRooms.get(7));
 
         // setting keys values and names
-        Keys key1 = new MazeBuilder().AddKey("YellowKey" , 10) ;
-        Keys key2 = new MazeBuilder().AddKey("RedKey" , 20);
-        Keys key3 = new MazeBuilder().AddKey("BlueKey" , 30) ;
-        Keys key4 = new MazeBuilder().AddKey("GreenKey" , 40);
-        Keys key5 = new MazeBuilder().AddKey("OrangeKey" , 50);
+        Keys key1 = new MazeBuilder().AddKey("YellowKey") ;
+        Keys key2 = new MazeBuilder().AddKey("RedKey" );
+        Keys key3 = new MazeBuilder().AddKey("BlueKey" ) ;
+        Keys key4 = new MazeBuilder().AddKey("GreenKey" );
+        Keys key5 = new MazeBuilder().AddKey("OrangeKey" );
 
         // Room1 Objects
 
@@ -57,7 +59,6 @@ public class MazeGame {
         paintR1.setKey(key1);
 
         Flashlight flashlightR1 = new Flashlight() ;
-        flashlightR1.SetPrice(30);
         HashMap<Items, Integer> SellerItems = new HashMap<>() ;
         SellerItems.put(flashlightR1 , flashlightR1.getPrice()) ;
         Seller sellerR1 = new MazeBuilder().AddSeller(SellerItems) ;
@@ -151,6 +152,16 @@ public class MazeGame {
 
     }
 
+    public String addPlayer(Player player){
+        if (!joinState() || reservedIDs.get(player.getPlayerIDS()) != null)
+            return "Can't add player\n"  ;
+        reservedIDs.put(player.getPlayerIDS() , true) ;
+        players.add(player) ;
+        return player.getPlayerIDS() + " " + player.getPlayerNameF() + "\n" ;
+    }
+    public ArrayList<Player> getPlayers(){
+        return players ;
+    }
     public String startStatement(){
         return "Game Started, you have 120 minutes to compete and run away, you can run through the winning doors\n" ;
     }
@@ -161,15 +172,38 @@ public class MazeGame {
         return " has escaped the maze\n";
     }
 
-    public String endtStatement(){
+    public String endStatement(){
         return "Game over\n" ;
     }
     public void setPlayers(GameMap gameMap , ArrayList<Player>players){
         for (int i =0 ; i<players.size() ; ++i){
             players.get(i).setRoomID((int)(Math.random()*7));
+     //       System.out.println(players.get(i).getCurrRoomID());
         }
     }
+    public void joinPlayer(boolean gameState){
+        joinPlayer = gameState ;
+    }
+    public boolean joinState(){
+        return joinPlayer;
+    }
 
+    public static HashMap<String , Boolean> CheckAvailableCommands(Room CurrRoom, RoomObjects Obj , Player player){
+        AvailableCommand avbCmd = new AvailableCommand(CurrRoom , Obj , player) ;
+        return avbCmd.getAvbCmd() ;
+    }
+
+
+    public String processCommand(Commander commander , GameMap gameMap){
+        String mazeCommand = commander.getMazeCommand();
+        Player player = commander.getMazePlayer(players);
+
+
+        Invoker invoker = new Invoker();
+        String res = invoker.takeCommand(mazeCommand,player  , gameMap) ;
+
+        return res;
+    }
 
     /*public static HashMap<String , Boolean> CheckAvailableCommands(Room CurrRoom, RoomObjects Obj , Player player){
         AvailableCommand avbCmd = new AvailableCommand(CurrRoom , Obj , player) ;

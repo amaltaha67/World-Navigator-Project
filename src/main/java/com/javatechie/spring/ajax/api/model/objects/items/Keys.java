@@ -1,7 +1,7 @@
 package com.javatechie.spring.ajax.api.model.objects.items;
 
 
-import com.javatechie.spring.ajax.api.dto.Player;
+import com.javatechie.spring.ajax.api.model.maze.Player;
 import com.javatechie.spring.ajax.api.model.objects.roomobjects.RoomObjects;
 
 public class Keys implements Items {
@@ -10,14 +10,11 @@ public class Keys implements Items {
 
     public Keys(String Name){
         this.Name = Name ;
+        price = 20;
     }
 
     public void setName(String name){
         Name = name;
-    }
-    @Override
-    public void SetPrice(int price) {
-        this.price = price ;
     }
 
     @Override

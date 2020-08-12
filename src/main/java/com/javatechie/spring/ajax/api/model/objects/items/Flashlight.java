@@ -3,13 +3,11 @@ package com.javatechie.spring.ajax.api.model.objects.items;
 import com.javatechie.spring.ajax.api.model.objects.Room;
 
 public class Flashlight implements Items {
-    private int price = 0 ;
+    private int price ;
 
-    @Override
-    public void SetPrice( int price) {
-        this.price = price;
+    public Flashlight(){
+        price = 50 ;
     }
-
     @Override
     public String getName() {
         return "Flashlight";

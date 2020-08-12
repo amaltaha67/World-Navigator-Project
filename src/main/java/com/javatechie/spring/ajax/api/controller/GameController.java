@@ -2,7 +2,7 @@ package com.javatechie.spring.ajax.api.controller;
 
 import com.javatechie.spring.ajax.api.dto.Commander;
 import com.javatechie.spring.ajax.api.dto.ServiceResponse;
-import com.javatechie.spring.ajax.api.dto.Player;
+import com.javatechie.spring.ajax.api.model.maze.Player;
 import com.javatechie.spring.ajax.api.model.commands.Invoker;
 import com.javatechie.spring.ajax.api.model.maze.GameMap;
 import com.javatechie.spring.ajax.api.model.maze.MazeGame;
@@ -15,20 +15,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 public class GameController {
-    ArrayList<Player> players = new ArrayList<>();
+
     MazeGame mazeGame = new MazeGame();
     GameMap gameMap = mazeGame.newMap();
 
-    boolean joinPlayer = true ;
+    //boolean joinPlayer = true ; // needs modification
 
     @GetMapping("/startGame")
     public ResponseEntity<Object> startGame() {
-        joinPlayer = false ;
+//        Executors.newSingleThreadScheduledExecutor().schedule(() -> System.out.println("Game Over"), 30, TimeUnit.SECONDS);
         String startingStatement = mazeGame.startStatement();
-        mazeGame.setPlayers(gameMap , players) ;
+        mazeGame.setPlayers(gameMap , mazeGame.getPlayers()) ;
+        mazeGame.joinPlayer(false);
         ServiceResponse<String> response = new ServiceResponse<>("success", startingStatement);
         return new ResponseEntity<Object>(response, HttpStatus.OK);
     }
@@ -36,28 +39,20 @@ public class GameController {
 
     @PostMapping("/savePlayer")
     public ResponseEntity<Object> addPlayer(@RequestBody Player player ) {
-
-        if (joinPlayer){
-            players.add(player);
-            return new ResponseEntity<Object>( new ServiceResponse<Player>
-                    ("success", player), HttpStatus.OK);
-        }else {
-            return new ResponseEntity<Object>(new ServiceResponse<String>
-                    ("success", "Can't add player"), HttpStatus.OK);
-        }
-
+            String res =  mazeGame.addPlayer(player);
+            ServiceResponse<String> response = new ServiceResponse<String>("success", res);
+            return new ResponseEntity<Object>( response, HttpStatus.OK);
     }
 
     @GetMapping("/getPlayers")
     public ResponseEntity<Object> getAllPlayers() {
-        ServiceResponse<List<Player>> response = new ServiceResponse<>("success", players);
+        ServiceResponse<List<Player>> response = new ServiceResponse<>("success", mazeGame.getPlayers());
         return new ResponseEntity<Object>(response, HttpStatus.OK);
     }
 
     @PostMapping("/saveCommand")
     public ResponseEntity<Object> addCommand(@RequestBody Commander commander ) {
-        Invoker invoker = new Invoker();
-        String res = invoker.takeCommand(commander.getMazeCommand() , commander.getMazePlayer(players) , gameMap) ;
+        String res = mazeGame.processCommand(commander , gameMap );
         ServiceResponse<String> response = new ServiceResponse<String>("success", res);
         return new ResponseEntity<Object>(response, HttpStatus.OK);
     }

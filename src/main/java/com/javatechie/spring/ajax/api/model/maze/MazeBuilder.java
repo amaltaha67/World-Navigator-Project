@@ -14,9 +14,8 @@ public class MazeBuilder implements Builder {
     }
 
     @Override
-    public Keys AddKey(String keyName , int price) {
+    public Keys AddKey(String keyName ) {
         Keys newKey = new Keys(keyName) ;
-        newKey.SetPrice(price);
         return newKey ;
 
     }

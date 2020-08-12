@@ -2,7 +2,7 @@ GET: $(document).ready(
     function() {
 
         // GET REQUEST
-        $("#getAllPlayers").click(function(event) {
+        $("#remove").click(function(event) {
             event.preventDefault();
             ajaxGet();
         });
@@ -11,19 +11,11 @@ GET: $(document).ready(
         function ajaxGet() {
             $.ajax({
                 type : "GET",
-                url : "getPlayers",
+                url : "startGame",
                 success : function(result) {
                     if (result.status == "success") {
-                        $('#getResultDiv ul').empty();
-                        var custList = "";
-                        $.each(result.data,
-                            function(i, player) {
-                               var user = "player IDS  "
-                                    + player.playerIDS + " " + player.playerNameF + "<br>";
-                                $('#getResultDiv .list-group').append(
-                                    user)
-                            });
-                        console.log("Success: ", result);
+                        $("#getResultDiv").html(
+                            result.data + "</p>");
                     } else {
                         $("#getResultDiv").html("<strong>Error</strong>");
                         console.log("Fail: ", result);

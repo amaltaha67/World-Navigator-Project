@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 public interface Builder {
     Mirror AddMirror();
-    Keys AddKey(String keyName , int price);
+    Keys AddKey(String keyName );
     Door AddDoor(boolean isLocked);
     Seller AddSeller(HashMap<Items, Integer> SellerItems);
     PlainWall AddPlainWall();

@@ -2,7 +2,7 @@ package com.javatechie.spring.ajax.api.model.commands;
 
 import com.javatechie.spring.ajax.api.model.directors.Directions;
 import com.javatechie.spring.ajax.api.model.maze.GameMap;
-import com.javatechie.spring.ajax.api.dto.Player;
+import com.javatechie.spring.ajax.api.model.maze.Player;
 import com.javatechie.spring.ajax.api.model.objects.Room;
 import com.javatechie.spring.ajax.api.model.objects.roomobjects.Door;
 import com.javatechie.spring.ajax.api.model.objects.roomobjects.RoomObjects;
