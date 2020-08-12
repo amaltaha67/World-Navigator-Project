@@ -29,11 +29,11 @@ public class Invoker {
         Constructor<?>constructor ;
         Command cmd = null ;
         try{
-            Class<?>klass = Class.forName("com.javatechie.spring.ajax.api.model.commands." + command) ;
-            constructor = klass.getDeclaredConstructor(GameMap.class , Player.class , String.class);
+            Class<?> c = Class.forName("com.javatechie.spring.ajax.api.model.commands." + command) ;
+            constructor = c.getDeclaredConstructor(GameMap.class , Player.class , String.class);
             cmd = (Command) constructor.newInstance(mazeMap , player , item);
         }catch(Exception e){
-            return "Not available command";
+            return "Not available command\n";
         }
         return cmd.execute();
 

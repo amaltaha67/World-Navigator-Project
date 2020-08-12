@@ -22,15 +22,16 @@ import java.util.concurrent.TimeUnit;
 public class GameController {
 
     MazeGame mazeGame = new MazeGame();
-    GameMap gameMap = mazeGame.newMap();
+    GameMap gameMap = null ;
 
     //boolean joinPlayer = true ; // needs modification
 
     @GetMapping("/startGame")
     public ResponseEntity<Object> startGame() {
 //        Executors.newSingleThreadScheduledExecutor().schedule(() -> System.out.println("Game Over"), 30, TimeUnit.SECONDS);
+        gameMap =  mazeGame.newMap();
         String startingStatement = mazeGame.startStatement();
-        mazeGame.setPlayers(gameMap , mazeGame.getPlayers()) ;
+        mazeGame.setPlayers(mazeGame.getPlayers()) ;
         mazeGame.joinPlayer(false);
         ServiceResponse<String> response = new ServiceResponse<>("success", startingStatement);
         return new ResponseEntity<Object>(response, HttpStatus.OK);

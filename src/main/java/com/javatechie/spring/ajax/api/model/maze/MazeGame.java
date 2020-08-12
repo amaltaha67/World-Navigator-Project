@@ -152,6 +152,7 @@ public class MazeGame {
 
     }
 
+
     public String addPlayer(Player player){
         if (!joinState() || reservedIDs.get(player.getPlayerIDS()) != null)
             return "Can't add player\n"  ;
@@ -162,23 +163,24 @@ public class MazeGame {
     public ArrayList<Player> getPlayers(){
         return players ;
     }
+
+    public  String removePlayer(Player player){
+        if (reservedIDs.get(player.getPlayerIDS()) == null)
+            return "Player Does not exist" ;
+        reservedIDs.remove(player.getPlayerIDS()) ;
+        players.remove(player) ;
+        return player.getPlayerIDS() + " gave up and left the game\n" ;
+    }
     public String startStatement(){
         return "Game Started, you have 120 minutes to compete and run away, you can run through the winning doors\n" ;
     }
     public String playerWon(){
         return " has escaped the maze\n";
     }
-    public String playerLost(){
-        return " has escaped the maze\n";
-    }
 
-    public String endStatement(){
-        return "Game over\n" ;
-    }
-    public void setPlayers(GameMap gameMap , ArrayList<Player>players){
-        for (int i =0 ; i<players.size() ; ++i){
-            players.get(i).setRoomID((int)(Math.random()*7));
-     //       System.out.println(players.get(i).getCurrRoomID());
+    public void setPlayers(ArrayList<Player>players){
+        for (Player player : players) {
+            player.setRoomID((int) (Math.random() * 6));
         }
     }
     public void joinPlayer(boolean gameState){
@@ -194,14 +196,60 @@ public class MazeGame {
     }
 
 
+    public void stealItems(Player firstPlayer , Player secondPlayer){
+        for (int i = 0 ; i<secondPlayer.PlayerItems().size() ; ++i){
+            firstPlayer.addItem(secondPlayer.PlayerItems().get(i));
+        }
+    }
+    public String checkForFights(){
+        ArrayList<Player> eliminate = new ArrayList<>();
+        for (int i = 0 ; i<players.size() ; ++i) {
+            for (int j = i+1 ; j<players.size() ; ++j) {
+                if (players.get(i).getCurrRoomID() == players.get(j).getCurrRoomID()){
+                    if (players.get(i).PlayerMazePoints() - players.get(j).PlayerMazePoints() > 0){
+                        stealItems(players.get(i) , players.get(j)) ;
+                        eliminate.add(players.get(j)) ;
+                    }else {
+                        stealItems(players.get(j) , players.get(i)) ;
+                        eliminate.add(players.get(i)) ;
+
+                    }
+
+                }
+            }
+        }
+        String elm  = "" ;
+        if (eliminate.size() != 0)
+            elm += "eliminating " ;
+        for (int i = 0 ; i<eliminate.size() ; ++i){
+            elm+= eliminate.get(i).getPlayerIDS() ;
+            reservedIDs.remove(eliminate.get(i).getPlayerIDS());
+            players.remove(i);
+        }
+
+        eliminate.clear();
+        return elm+"\n" ;
+    }
+    public String checkForWinner(){
+        for(int i =0 ; i<players.size() ; ++i) {
+            if (players.get(i).getCurrRoomID() == 7)
+                return players.get(i).getPlayerIDS() + playerWon();
+        }
+        return "";
+    }
     public String processCommand(Commander commander , GameMap gameMap){
         String mazeCommand = commander.getMazeCommand();
         Player player = commander.getMazePlayer(players);
+        if (mazeCommand == "GiveUp")
+            return removePlayer(player) ;
 
+        if (reservedIDs.get(player.getPlayerIDS()) == null)
+            return "Player does not exist\n" ;
 
         Invoker invoker = new Invoker();
-        String res = invoker.takeCommand(mazeCommand,player  , gameMap) ;
-
+        String res = invoker.takeCommand(mazeCommand , player , gameMap) ;
+        res+= checkForFights();
+        res+= checkForWinner();
         return res;
     }
 
