@@ -21,7 +21,6 @@ public class Flashlight implements Items {
 
     public String UseFlashlight(Room room) {
         if (room.isLit()) {
-            //   System.out.println("The light in turned on in this room");
             return "The light in turned on in this room\n";
         }else{
             room.toggleLit();

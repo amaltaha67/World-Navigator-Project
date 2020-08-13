@@ -23,10 +23,8 @@ public class Mirror extends RoomObjects{
     public String check(Player player){
         if (getKey() != null){
             player.addItem(key);
-           // System.out.println("Key " + key.getName() + " Was acquired");
             return "Key " + key.getName() + " Was acquired\n";
         }else {
-    //        System.out.println("No key on this Mirror");
             return "No key on this Mirror\n";
         }
     }

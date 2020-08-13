@@ -44,13 +44,11 @@ public class Chest extends RoomObjects{
             if (player.checkItem(key.getName()) != null){
                 chestLock.UnLock();
                 addItemsToPlayer(player);
-               // System.out.println("The Chest is now open");
                 return "The Chest is now open\n";
             }else
              return  check(player);
         else
             return "The Chest is open\n";
-           // System.out.println("The Chest is open");
 
     }
 
@@ -58,11 +56,9 @@ public class Chest extends RoomObjects{
     public String check(Player player){
         Check = true ;
         if (checkChest()) {
-            //  System.out.println("This Chest requires " + key.getName());
             return "This Chest requires " + key.getName() + "\n";
         } else {
             return "The Chest is open\n";
-            //    System.out.println("The Chest is open");
         }
     }
     public void addItemsToPlayer(Player player) {
@@ -77,11 +73,9 @@ public class Chest extends RoomObjects{
 
     public  String NeedKey(){
         if (!checkKey())
-       //     System.out.println("No need for key for this chest");
              return "No need for key for this chest";
         else
             return "This chest requires" + key.getName() + "\n";
-     //       System.out.println("This chest requires" + key.getName());
     }
 
 

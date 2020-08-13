@@ -26,10 +26,8 @@ public class Paint extends RoomObjects{
     public String check(Player player){
         if (getKey() != null){
             player.addItem(key);
-       //     System.out.println("Key " + key.getName() + " Was acquired");
             return "Key " + key.getName() + " Was acquired\n";
         }else {
-      //      System.out.println("No key on this Paint");
             return "No key on this Paint\n";
         }
     }

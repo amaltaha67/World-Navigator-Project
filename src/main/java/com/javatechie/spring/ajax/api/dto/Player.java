@@ -11,7 +11,7 @@ import com.javatechie.spring.ajax.api.model.objects.roomobjects.RoomObjects;
 
 public class Player {
 
-    private int playerIDS ; // needs to be deleted
+    private int playerIDS ;
     private String playerNameF ;
 
     private HashMap<Items, Integer> ownedItems ;
@@ -97,12 +97,5 @@ public class Player {
     public int getCurrRoomID (){
         return currRoomID ;
     }
-/*
-    @Override
-    public String toString() {
-        return "Player{" +
-                "playerID=" + playerID +
-                ", playerName='" + playerName + '\'' +
-                '}';
-    }*/
+
 }
