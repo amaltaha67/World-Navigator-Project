@@ -20,14 +20,11 @@ public class UseKey implements Command{
         key = new Keys(itemName) ;
 
     }
-    /*public void getItemName(String itemName) {
-        key.setName(itemName);
-    }*/
+
     @Override
     public String execute() {
 
         if (!Obj.toString().equals("Chest") && !Obj.toString().equals("Door"))
-            //System.out.println("Can't use This key on " + Obj);
             return "Can't use This key on " + Obj + "\n";
         return key.useKey(player , Obj);
     }

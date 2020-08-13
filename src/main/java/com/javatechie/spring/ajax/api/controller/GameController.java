@@ -24,11 +24,8 @@ public class GameController {
     MazeGame mazeGame = new MazeGame();
     GameMap gameMap = null ;
 
-    //boolean joinPlayer = true ; // needs modification
-
     @GetMapping("/startGame")
     public ResponseEntity<Object> startGame() {
-//        Executors.newSingleThreadScheduledExecutor().schedule(() -> System.out.println("Game Over"), 30, TimeUnit.SECONDS);
         gameMap =  mazeGame.newMap();
         String startingStatement = mazeGame.startStatement();
         mazeGame.setPlayers(mazeGame.getPlayers()) ;

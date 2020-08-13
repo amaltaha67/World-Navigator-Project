@@ -23,7 +23,6 @@ public class UseFlashlight implements Command{
              return  flashlight.UseFlashlight(room);
         else
             return "The player don't have a Flashlight\n";
-            //System.out.println("The player don't have a Flashlight");
     }
 
     @Override

@@ -22,16 +22,11 @@ public class Sell implements Command {
         PlayerItem = player.checkItem(itemName) ;
 
     }
-    /*public void getItemName(String itemName) {
-        this.itemName = itemName;
-        PlayerItem = player.checkItem(itemName) ;
-    }*/
 
 
     @Override
     public String execute() {
         if (PlayerItem == null){
-           // System.out.println("The Player doesn't have the " + itemName);
             return "The Player doesn't have the " + itemName + "\n";
         }
 

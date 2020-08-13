@@ -257,58 +257,6 @@ public class MazeGame {
         AvailableCommand avbCmd = new AvailableCommand(CurrRoom , Obj , player) ;
         return avbCmd.getAvbCmd() ;
     }
-
-
-    public static void ProcessCommands(String command , GameMap mazeMap) {
-        ProcessCommand processCommand= new ProcessCommand(command , mazeMap) ;
-        processCommand.ProcessCmd() ;
-
-    }
-    public static void startGame (String [] args) {
-
-        Executors.newSingleThreadScheduledExecutor().schedule(() -> System.exit(0), 1800, TimeUnit.SECONDS);
-
-       // Player player = new Player("Amal") ;
-        GameMap mazeMap = newMap() ;
-        //player.setRoomID(/*(int)(Math.random()*7) 0);
-        System.out.println("Welcome to the Maze Game, You are now at Room 1");
-        System.out.println("You have 30 minutes to get outside the maze,"
-                + " otherwise the maze will crash and you lose");
-
-        /*Scanner sc = new Scanner(System.in);
-
-            while (true) {
-                int CurrRoomID = player.getCurrRoomID() ;
-                if (CurrRoomID == 7)
-                {
-                    System.out.println("You Won");
-                    break ;
-                }
-                // Directions PlayerDir = player.PlayerDirection();
-                Room CurrRoom = mazeMap.getRoom(CurrRoomID) ;
-                // RoomObjects Obj  = getObjDir(CurrRoom , PlayerDir);
-                RoomObjects Obj = player.getObjDir(CurrRoom) ;
-                HashMap<String , Boolean> AvbCommands = CheckAvailableCommands(CurrRoom, Obj , player);
-                System.out.println("You Have The following Commands:");
-                for(Map.Entry<String, Boolean> mp : AvbCommands.entrySet()){
-                    System.out.println(mp.getKey());
-                }
-                String command = sc.nextLine() ;
-               /* while (AvbCommands.get(command) == null){
-                    System.out.println("Not Available Command");
-                    command = sc.nextLine() ;
-                }
-                if (command.equals("Quit")){
-                    System.out.println("Game Over");
-                    System.exit(0);
-                }
-                if (command.equals("Restart")){
-                    break;
-                }
-                Invoker invoker = new Invoker();
-                System.out.println(invoker.takeCommand(command , player , mazeMap));
-                //ProcessCommands(command , mazeMap);
-            }
-        }*/
+    */
 
 }

@@ -19,26 +19,21 @@ public class Look implements Command {
     @Override
     public String execute() {
         if (!room.isLit()){
-            //System.out.println("Dark Room");
             return "Dark Room\n";
         }
 
         if (player.PlayerDirection().getDirection() == Directions.WEST) {
             room.getWestObj().setLooked();
-            //System.out.println(room.getWestObj());
             return room.getWestObj().toString();
         }
         else if (player.PlayerDirection().getDirection() == Directions.NORTH) {
             room.getNorthObj().setLooked();
-           // System.out.println(room.getNorthObj());
             return  room.getNorthObj().toString();
         }else if (player.PlayerDirection().getDirection() == Directions.EAST) {
             room.getEastObj().setLooked();
-        //    System.out.println(room.getEastObj());
            return room.getEastObj().toString();
         }else {
             room.getSouthObj().setLooked();
-           // System.out.println(room.getSouthObj());
             return room.getSouthObj().toString();
         }
     }
