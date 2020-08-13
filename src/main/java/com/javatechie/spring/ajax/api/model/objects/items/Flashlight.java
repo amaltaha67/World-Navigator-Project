@@ -30,6 +30,6 @@ public class Flashlight implements Items {
 
     @Override
     public String toString() {
-        return "New flashlight";
+        return "Flashlight";
     }
 }

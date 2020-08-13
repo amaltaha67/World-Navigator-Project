@@ -24,15 +24,11 @@ public class Buy implements Command {
         this.itemName = itemName;
         SellerItem = seller.checkItem(itemName) ;
     }
-  /*  public void getItemName(String itemName) {
-        this.itemName = itemName;
-        SellerItem = seller.checkItem(itemName) ;
-    }*/
+
 
     @Override
     public String execute() {
         if (SellerItem == null){
-       //     System.out.println("The Seller doesn't have the" + itemName);
             return "The Seller doesn't have the" + itemName + "\n";
         }
 
@@ -40,9 +36,9 @@ public class Buy implements Command {
             player.addSellerItem(SellerItem);
             seller.RemoveItem(SellerItem);
             return "Buying" + itemName + "\n" ;
-        }else
-           // System.out.println("Not enough maze points");
-        return "Not enough maze points\n";
+        }else{
+            return "Not enough maze points\n";
+        }
     }
 
     @Override
