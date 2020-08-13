@@ -1,7 +1,5 @@
 package com.javatechie.spring.ajax.api.dto;
 
-import com.javatechie.spring.ajax.api.model.maze.Player;
-
 import java.util.List;
 
 public class Commander {

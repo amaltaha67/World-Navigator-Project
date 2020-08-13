@@ -1,7 +1,7 @@
 package com.javatechie.spring.ajax.api.model.directors;
 
 
-import com.javatechie.spring.ajax.api.model.maze.Player;
+import com.javatechie.spring.ajax.api.dto.Player;
 
 public class Navigate{
     private Director Direction;

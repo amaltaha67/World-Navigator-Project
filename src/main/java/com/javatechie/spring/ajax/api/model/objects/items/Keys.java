@@ -1,7 +1,7 @@
 package com.javatechie.spring.ajax.api.model.objects.items;
 
 
-import com.javatechie.spring.ajax.api.model.maze.Player;
+import com.javatechie.spring.ajax.api.dto.Player;
 import com.javatechie.spring.ajax.api.model.objects.roomobjects.RoomObjects;
 
 public class Keys implements Items {

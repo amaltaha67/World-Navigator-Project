@@ -3,6 +3,7 @@ package com.javatechie.spring.ajax.api.model.maze;
 
 
 import com.javatechie.spring.ajax.api.dto.Commander;
+import com.javatechie.spring.ajax.api.dto.Player;
 import com.javatechie.spring.ajax.api.model.commands.AvailableCommand;
 import com.javatechie.spring.ajax.api.model.commands.Invoker;
 import com.javatechie.spring.ajax.api.model.objects.Room;
@@ -75,6 +76,7 @@ public class MazeGame {
         //Room2 Objects
         MazePoints mazePointsChestR2 = new MazePoints() ;
         mazePointsChestR2.SetPrice(15);
+
         Chest chestR2 = new MazeBuilder().AddChest(true) ;
         chestR2.setKey(key2);
         chestR2.AddItem(mazePointsChestR2);
@@ -231,16 +233,18 @@ public class MazeGame {
         return elm+"\n" ;
     }
     public String checkForWinner(){
-        for(int i =0 ; i<players.size() ; ++i) {
-            if (players.get(i).getCurrRoomID() == 7)
-                return players.get(i).getPlayerIDS() + playerWon();
+        for (Player player : players) {
+            if (player.getCurrRoomID() == 7)
+                return player.getPlayerIDS() + playerWon();
         }
         return "";
     }
+
+
     public String processCommand(Commander commander , GameMap gameMap){
         String mazeCommand = commander.getMazeCommand();
         Player player = commander.getMazePlayer(players);
-        if (mazeCommand == "GiveUp")
+        if (mazeCommand.equals("GiveUp"))
             return removePlayer(player) ;
 
         if (reservedIDs.get(player.getPlayerIDS()) == null)
@@ -253,10 +257,5 @@ public class MazeGame {
         return res;
     }
 
-    /*public static HashMap<String , Boolean> CheckAvailableCommands(Room CurrRoom, RoomObjects Obj , Player player){
-        AvailableCommand avbCmd = new AvailableCommand(CurrRoom , Obj , player) ;
-        return avbCmd.getAvbCmd() ;
-    }
-    */
 
 }

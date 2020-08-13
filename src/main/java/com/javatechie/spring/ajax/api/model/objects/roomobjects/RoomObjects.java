@@ -3,7 +3,7 @@ package com.javatechie.spring.ajax.api.model.objects.roomobjects;
 
 import com.javatechie.spring.ajax.api.model.directors.Directions;
 import com.javatechie.spring.ajax.api.model.directors.Director;
-import com.javatechie.spring.ajax.api.model.maze.Player;
+import com.javatechie.spring.ajax.api.dto.Player;
 
 public class RoomObjects {
     private Director ObjDirection ;

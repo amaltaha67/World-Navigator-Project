@@ -3,7 +3,7 @@ package com.javatechie.spring.ajax.api.model.commands;
 
 
 import com.javatechie.spring.ajax.api.model.maze.GameMap;
-import com.javatechie.spring.ajax.api.model.maze.Player;
+import com.javatechie.spring.ajax.api.dto.Player;
 
 import java.lang.reflect.Constructor;
 

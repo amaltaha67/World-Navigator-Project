@@ -2,8 +2,7 @@ package com.javatechie.spring.ajax.api.controller;
 
 import com.javatechie.spring.ajax.api.dto.Commander;
 import com.javatechie.spring.ajax.api.dto.ServiceResponse;
-import com.javatechie.spring.ajax.api.model.maze.Player;
-import com.javatechie.spring.ajax.api.model.commands.Invoker;
+import com.javatechie.spring.ajax.api.dto.Player;
 import com.javatechie.spring.ajax.api.model.maze.GameMap;
 import com.javatechie.spring.ajax.api.model.maze.MazeGame;
 import org.springframework.http.HttpStatus;
@@ -13,10 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
 @RestController
 public class GameController {
