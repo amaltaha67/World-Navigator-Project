@@ -26,8 +26,8 @@ $(document).ready(
                 success : function(result) {
                     if (result.status == "success") {
                         $("#postResultDiv").html(
-                            result.data + " Post Successfully! <br>"
-                            + "---> Congrats !!" + "</p>");
+                            result.data + "<br>"
+                             + "</p>");
                     } else {
                         $("#postResultDiv").html("<strong>Error</strong>");
                     }

@@ -29,7 +29,7 @@ $(document).ready(
                    /*         result.data.playerIDS + " " +
                             result.data.playerNameF
                             + " Post Successfully! <br>"*/
-                            result.data + "---> Congrats !!" + "</p>");
+                            result.data  + "</p>");
                     } else {
                         $("#postResultDiv").html("<strong>Can't Add Player</strong>");
                     }
