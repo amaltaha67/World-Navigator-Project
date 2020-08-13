@@ -7,6 +7,7 @@ import com.javatechie.spring.ajax.api.model.directors.Directions;
 import com.javatechie.spring.ajax.api.model.directors.Director;
 import com.javatechie.spring.ajax.api.model.objects.Room;
 import com.javatechie.spring.ajax.api.model.objects.items.Items;
+import com.javatechie.spring.ajax.api.model.objects.items.MazePoints;
 import com.javatechie.spring.ajax.api.model.objects.roomobjects.RoomObjects;
 
 public class Player {
